@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avia Kassa — Chipta olish formasi</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #dff1ff, #f3e6ff);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #6a0dad;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    main {
+      max-width: 700px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #6a0dad;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    input, select, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+      font-size: 15px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #6a0dad;
+      outline: none;
+      box-shadow: 0 0 5px rgba(106,13,173,0.3);
+    }
+
+    fieldset {
+      border: 2px solid #6a0dad;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: #faf7ff;
+    }
+
+    legend {
+      font-weight: bold;
+      color: #6a0dad;
+      padding: 0 10px;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    input[type="submit"], input[type="reset"] {
+      width: 120px;
+      background-color: #6a0dad;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover, input[type="reset"]:hover {
+      background-color: #8b3cf0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #6a0dad;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Avia Kassa</h1>
+    <p>Onlayn chipta buyurtma tizimi</p>
+  </header>
+
+  <main>
+    <h2>Chipta olish formasi</h2>
+
+    <form action="#" method="post">
+      <fieldset>
+        <legend>Yo‘lovchi ma’lumotlari</legend>
+
+        <label for="fname">Ism va familiya:</label>
+        <input type="text" id="fname" name="fname" placeholder="Ismingizni kiriting" required>
+
+        <label for="email">Elektron pochta:</label>
+        <input type="email" id="email" name="email" placeholder="email@example.com" required>
+
+        <label for="phone">Telefon raqamingiz:</label>
+        <input type="tel" id="phone" name="phone" placeholder="+998901234567" required>
+
+        <label>Jinsingiz:</label>
+        <input type="radio" name="gender" value="male"> Erkak
+        <input type="radio" name="gender" value="female"> Ayol
+      </fieldset>
+
+      <fieldset>
+        <legend>Parvoz ma’lumotlari</legend>
+
+        <label for="direction">Yo‘nalishni tanlang:</label>
+        <select id="direction" name="direction" required>
+          <option value="">Tanlang...</option>
+          <option value="toshkent-istanbul">Toshkent — Istanbul</option>
+          <option value="toshkent-moskva">Toshkent — Moskva</option>
+          <option value="toshkent-dubay">Toshkent — Dubay</option>
+          <option value="toshkent-london">Toshkent — London</option>
+        </select>
+
+        <label for="date">Jo‘nash sanasi:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label>Chipta turi:</label>
+        <input type="checkbox" name="class" value="econom"> Ekonom
+        <input type="checkbox" name="class" value="business"> Biznes
+      </fieldset>
+
+      <fieldset>
+        <legend>Qo‘shimcha ma’lumot</legend>
+        <label for="message">Izoh yoki talablaringiz:</label>
+        <textarea id="message" name="message" rows="4" placeholder="Masalan: o‘rindiq tanlash, maxsus ovqat, va hokazo..."></textarea>
+      </fieldset>
+
+      <div class="btns">
+        <input type="submit" value="Yuborish">
+        <input type="reset" value="Tozalash">
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>© 2025 Avia Kassa. Barcha huquqlar himoyalangan.</p>
+  </footer>
+
+</body>
+</html>

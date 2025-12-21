@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Avia kassa — Parvozlar va chiptalar</title>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#0ea5e9; --muted:#94a3b8; --glass: rgba(255,255,255,0.03);
+      --radius:14px; font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#071025 0%, #071b2a 100%);color:#e6eef8;min-height:100vh}
+    .container{max-width:1100px;margin:36px auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#2563eb);display:flex;align-items:center;justify-content:center;font-weight:700}
+    h1.logo-text{margin:0;font-size:18px}
+    nav a{color:var(--muted);text-decoration:none;margin-left:16px}
+    .hero{margin-top:28px;background:var(--card);padding:28px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    .hero-grid{display:grid;grid-template-columns:1fr 360px;gap:24px}
+    .headline{font-size:28px;margin:0 0 8px 0}
+    .lede{color:var(--muted);margin:0 0 18px 0}
+    .features{display:flex;gap:12px;flex-wrap:wrap}
+    .chip{background:var(--glass);padding:8px 12px;border-radius:999px;color:var(--muted);font-size:13px}
+
+    /* Search card */
+    .search-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+    .form-row{display:flex;gap:10px;margin-bottom:10px}
+    label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+    input[type="text"], input[type="date"], select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#06202b;border:none;cursor:pointer;font-weight:600}
+    .secondary{background:transparent;border:1px solid rgba(255,255,255,0.05);color:var(--muted)}
+
+    /* Info sections */
+    section{margin-top:22px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .card{background:var(--card);padding:16px;border-radius:12px}
+    .muted{color:var(--muted)}
+
+    footer{margin-top:28px;padding:12px;color:var(--muted);text-align:center}
+
+    /* Responsive */
+    @media (max-width:880px){.hero-grid{grid-template-columns:1fr}.logo{width:48px;height:48px}.container{padding:16px}}
+    @media (max-width:420px){.brand h1{font-size:14px}.headline{font-size:20px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">AK</div>
+        <div>
+          <h1 class="logo-text">Avia kassa</h1>
+          <div class="muted" style="font-size:13px">Tez, ishonchli chiptalar</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#search">Qidiruv</a>
+        <a href="#yo-nalishlar">Yo‘nalishlar</a>
+        <a href="#aloqa">Aloqa</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="hero-grid">
+          <div>
+            <h2 class="headline">Tez va oson — Avia kassa orqali chiptangizni toping</h2>
+            <p class="lede">Eng yaxshi yo‘nalishlar, shaffof narxlar va moslashuvchan qidiruv. Sayohatingizni rejalashtirishni boshlang.</p>
+            <div class="features">
+              <span class="chip">Eng kam narxlar</span>
+              <span class="chip">Onlayn toʻlov</span>
+              <span class="chip">24/7 yordam</span>
+            </div>
+
+            <section id="yo-nalishlar">
+              <h3 style="margin-top:18px">Mashhur yo‘nalishlar</h3>
+              <div class="cards">
+                <div class="card">
+                  <strong>Toshkent — Istanbul</strong>
+                  <div class="muted">Kunlik bir nechta reyslar</div>
+                </div>
+                <div class="card">
+                  <strong>Toshkent — Moskva</strong>
+                  <div class="muted">Qulay jadval va transferlar</div>
+                </div>
+                <div class="card">
+                  <strong>Toshkent — Dubay</strong>
+                  <div class="muted">Turistik va ishchi yo‘nalishlar</div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <aside id="search" class="search-card">
+            <form>
+              <div class="form-row">
+                <div style="flex:1">
+                  <label for="from">Qayerdan</label>
+                  <input id="from" type="text" placeholder="Shahar yoki aeroport">
+                </div>
+                <div style="flex:1">
+                  <label for="to">Qayerga</label>
+                  <input id="to" type="text" placeholder="Shahar yoki aeroport">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div style="flex:1">
+                  <label for="depart">Ketish sanasi</label>
+                  <input id="depart" type="date">
+                </div>
+                <div style="flex:1">
+                  <label for="return">Qaytish sanasi</label>
+                  <input id="return" type="date">
+                </div>
+              </div>
+
+              <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+                <button class="btn" type="submit">Chipta qidirish</button>
+                <button class="secondary btn" type="reset">Tozalash</button>
+              </div>
+            </form>
+          </aside>
+        </div>
+      </div>
+
+      <section>
+        <h3>Biz haqimizda</h3>
+        <p class="muted">Avia kassa — onlayn chiptalar va parvozlar haqida ma'lumot beruvchi xizmat. Biz mijozlarimizga eng qulay variantlarni taqdim etamiz va buyurtmalarni boshqarishda yordam beramiz.</p>
+      </section>
+
+      <section id="aloqa">
+        <h3>Aloqa</h3>
+        <div class="cards">
+          <div class="card">
+            <strong>Telefon</strong>
+            <div class="muted">+998 71 123 45 67</div>
+          </div>
+          <div class="card">
+            <strong>Email</strong>
+            <div class="muted">support@aviakassa.uz</div>
+          </div>
+          <div class="card">
+            <strong>Manzil</strong>
+            <div class="muted">Toshkent, O‘zbekiston</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © 2025 Avia kassa — Barcha huquqlar himoyalangan
+    </footer>
+  </div>
+</body>
+</html>

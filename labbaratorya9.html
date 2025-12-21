@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avia Kassa</title>
+<style>
+  /* Umumiy uslublar */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #0077cc;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.search-form {
+  padding: 20px;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.search-form input, .search-form button {
+  padding: 10px;
+  margin: 5px;
+  font-size: 16px;
+}
+
+.tickets {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.ticket {
+  flex: 1;
+  background-color: #ffcc00;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+footer {
+  text-align: center;
+  background-color: #0077cc;
+  color: white;
+  padding: 10px;
+}
+/* Katta ekranlar uchun (kompyuter) */
+@media (min-width: 992px) {
+  /* Header menyu yonma-yon */
+  header nav ul {
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  /* Uchish chiptalari bloklari yonma-yon */
+  .tickets {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  /* Qidiruv formasi keng va markazlashgan */
+  .search-form input, .search-form button {
+    width: auto;
+    display: inline-block;
+    margin: 5px;
+    font-size: 18px;
+    padding: 12px;
+  }
+
+  /* Ticket bloklari balandroq va kengroq */
+  .ticket {
+    padding: 30px;
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Avia Kassa</h1>
+  <nav>
+    <ul>
+      <li><a href="#">Bosh sahifa</a></li>
+      <li><a href="#">Chiptalar</a></li>
+      <li><a href="#">Bog‘lanish</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="search-form">
+  <h2>Chipta qidirish</h2>
+  <form>
+    <input type="text" placeholder="Ketish shaharini kiriting">
+    <input type="text" placeholder="Yetib borish shaharini kiriting">
+    <input type="date">
+    <button type="submit">Qidirish</button>
+  </form>
+</section>
+
+<section class="tickets">
+  <div class="ticket">Uchish: Toshkent → Moskva<br>Sanasi: 25/12/2025<br>Narx: 250$</div>
+  <div class="ticket">Uchish: Toshkent → Istanbul<br>Sanasi: 26/12/2025<br>Narx: 180$</div>
+  <div class="ticket">Uchish: Toshkent → Dubay<br>Sanasi: 27/12/2025<br>Narx: 300$</div>
+</section>
+
+<footer>
+  <p>© 2025 Avia Kassa</p>
+</footer>
+
+</body>
+</html>

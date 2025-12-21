@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avia Kassa</title>
+  <style>
+    /* Umumiy uslublar */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(to bottom right, rgba(95, 158, 255, 0.8), rgba(255, 255, 255, 0.7)),
+                  url("sky-bg.jpg") no-repeat center/cover;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      color: #fff;
+      padding: 20px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    header h1 {
+      font-size: 28px;
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffec64;
+    }
+
+    /* Intro qismi */
+    .intro {
+      text-align: center;
+      margin: 50px auto;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .intro h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    .intro img {
+      width: 280px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      border: 3px solid rgba(255,255,255,0.8);
+    }
+
+    /* Blog kartalar */
+    .blog-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 25px;
+      padding: 0 5%;
+      margin-top: 50px;
+    }
+
+    .blog-card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .blog-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+    }
+
+    .blog-content {
+      padding: 15px;
+      color: #222;
+    }
+
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .blog-text {
+      font-size: 15px;
+      color: #333;
+    }
+
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      padding: 15px;
+    }
+
+    .btn {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #3b82f6;
+      color: #3b82f6;
+    }
+
+    .btn-outline:hover {
+      background: #3b82f6;
+      color: #fff;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #3b82f6, #60a5fa);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(59,130,246,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(59,130,246,0.4);
+    }
+
+    /* Jadval */
+    table {
+      width: 90%;
+      margin: 60px auto;
+      border-collapse: collapse;
+      background: rgba(255,255,255,0.25);
+      backdrop-filter: blur(15px);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+    }
+
+    th {
+      background: rgba(59,130,246,0.8);
+    }
+
+    tr:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    td img {
+      width: 80px;
+      border-radius: 10px;
+    }
+/* Forma */
+    form {
+      width: 90%;
+      margin: 60px auto;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 25px;
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    fieldset {
+      border: 2px solid rgba(255,255,255,0.5);
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    legend {
+      font-weight: bold;
+      font-size: 20px;
+      color: #ffec64;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      margin-top: 5px;
+    }
+
+    input[type="submit"], input[type="reset"] {
+      width: 48%;
+      margin-top: 15px;
+      background: linear-gradient(45deg, #3b82f6, #60a5fa);
+      color: #fff;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover, input[type="reset"]:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      background: rgba(0,0,0,0.4);
+      text-align: center;
+      color: #fff;
+      padding: 15px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .intro h2 { font-size: 28px; }
+      nav a { margin: 0 8px; }
+      table { font-size: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>✈️ Avia Kassa</h1>
+    <nav>
+      <a href="#">Bosh sahifa</a>
+      <a href="#">Yo‘nalishlar</a>
+      <a href="#">Blog</a>
+      <a href="#">Aloqa</a>
+    </nav>
+  </header>
+
+  <section class="intro">
+    <h2>Xush kelibsiz</h2>
+    <p>Eng qulay avia chipta sayti — tez, ishonchli va zamonaviy dizaynda!</p>
+    <img src="Desktop/KIDT-233/download-9.jpg" alt="Samolyot rasmi">
+  </section>
+
+  <section class="blog-container">
+    <div class="blog-card">
+      <img src="Desktop/KIDT-233/download-4.jpg" alt="Blog 1">
+      <div class="blog-content">
+        <div class="blog-meta"><span>Admin</span><span>📅 30/10/2025</span></div>
+        <p class="blog-text">Sayohat qilayotganlar uchun eng qulay yo‘nalishlar ro‘yxati.</p>
+      </div>
+      <div class="btns">
+        <button class="btn btn-outline">Batafsil</button>
+        <button class="btn btn-primary">Chipta olish</button>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="Desktop/KIDT-233/download-6.jpg" alt="Blog 2">
+      <div class="blog-content">
+        <div class="blog-meta"><span>Admin</span><span>📅 01/11/2025</span></div>
+        <p class="blog-text">Yevropa shaharlariga chegirmali reyslar bilan tanishing.</p>
+      </div>
+      <div class="btns">
+        <button class="btn btn-outline">Batafsil</button>
+        <button class="btn btn-primary">Chipta olish</button>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <img src="Desktop/KIDT-233/download-8.jpg" alt="Blog 3">
+      <div class="blog-content">
+        <div class="blog-meta"><span>Admin</span><span>📅 05/11/2025</span></div>
+        <p class="blog-text">Asosiy yo‘nalishlar bo‘yicha to‘liq jadval va narxlar.</p>
+      </div>
+      <div class="btns">
+        <button class="btn btn-outline">Batafsil</button>
+        <button class="btn btn-primary">Chipta olish</button>
+      </div>
+    </div>
+  </section>
+
+  <table>
+    <tr>
+      <th>Yo‘nalish</th>
+      <th>Vaqt</th>
+      <th>Narx</th>
+      <th>Rasm</th>
+    </tr>
+    <tr>
+      <td>Toshkent — Istanbul</td>
+      <td>10:45</td>
+      <td>3 200 000 so‘m</td>
+      <td><img src="istanbul.jpg" alt=""></td>
+    </tr>
+    <tr>
+      <td>Toshkent — Dubay</td>
+      <td>15:30</td>
+      <td>2 950 000 so‘m</td>
+      <td><img src="dubai.jpg" alt=""></td>
+    </tr>
+  </table>
+
+  <form>
+    <fieldset>
+      <legend>Yo‘lovchi ma’lumotlari</legend>
+      <label>Ism Familiya:</label>
+      <input type="text" placeholder="Asadbek">
+      <label>Pasport raqami:</label>
+      <input type="text" placeholder="AA1234567">
+
+
+<label>Telefon raqami:</label>
+      <input type="tel" placeholder="+998901234567">
+      <label>Yo‘nalish:</label>
+      <select>
+        <option>Toshkent — Istanbul</option>
+        <option>Toshkent — Dubay</option>
+      </select>
+      <br><br>
+      <input type="submit" value="Yuborish">
+      <input type="reset" value="Tozalash">
+    </fieldset>
+  </form>
+
+  <footer>
+    © 2025 Avia Kassa Deluxe | Asadbek tomonidan yaratilgan ✈️
+  </footer>
+</body>
+</html>

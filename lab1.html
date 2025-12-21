@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avia Kassa</title>
+
+  <style>
+    /* --- Umumiy sozlamalar --- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #fff8f8;
+      color: #333;
+    }
+
+    header.sarlavha {
+      background-color: #ffb6b9;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logotip {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    .nav a:hover {
+      text-decoration: underline;
+    }
+
+    main.main {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .intro h2 {
+      color: #ff6f61;
+    }
+
+    .intro p {
+      font-size: 18px;
+    }
+
+    .recipe-section img {
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+
+    .list-section ul, .list-section ol {
+      text-align: left;
+      display: inline-block;
+      margin: 10px auto;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    table th {
+      background-color: #ffb6b9;
+      color: white;
+    }
+
+    /* 4) ACTIONS: Flexbox yordamida tugmalar joylashadi */
+    .card-actions{
+      display: flex;
+      gap: 12px;
+      padding: 14px 16px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #f0f0f0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.02));
+    }
+
+    .btn{
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 18px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      background: transparent;
+    }
+
+    .btn-outline{
+      border-color: #cfa6ff;
+      color: #6b3bd6;
+    }
+
+    .btn-primary{
+      background: linear-gradient(90deg,#7b3fe1,#b34ff1);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 12px rgba(123,63,225,0.26);
+    }
+
+    .footer {
+      background-color: #ffb6b9;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    li { text-align: left; }
+
+    .griddisley{
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      padding: 15px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      color: #7b3fe1;
+    }
+
+    .card-text {
+      font-size: 15px;
+      color: #555;
+    }
+
+    table tr:hover {
+      background-color: #fff0f0;
+      transition: background-color 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #ff6f61;
+      box-shadow: 0 0 5px rgba(255,111,97,0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .griddisley {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header.sarlavha {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav {
+        margin-top: 10px;
+      }
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  div.intro img{
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: relative;
+  animation-name: myAnimation;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes myAnimation {
+from {background-color: red;}
+  to {background-color: yellow;}
+
+  
+ from { transform: rotate(0 deg)}
+ to {transform: rotate (360 deg)}
+}
+  </style>
+</head>
+
+<body>
+
+  <header class="sarlavha">
+    <h1 class="logotip">Avia Kassa</h1>
+    <nav class="nav">
+      <a href="#">Bosh sahifa</a>
+      <a href="#">Yo‘nalishlar</a>
+      <a href="#">Biz haqimizda</a>
+      <a href="#">Aloqa</a>
+    </nav>
+  </header>
+
+  <main class="main">
+
+    <div class="intro">
+      <h2>Xush kelibsiz!</h2>
+      <img src="Desktop/KIDT-233/download-9.jpg",alt="Xush kelibsiz" width="300">
+      <p>“Avia Kassa” orqali siz eng qulay va arzon <b>avia chiptalar</b>ni topasiz.</p>
+      <p><mark> <u>Har kuni yangilangan parvozlar</u></mark> siz uchun mavjud!</p>
+    </div>
+
+    <div class="recipe-section">
+      <h3>Bugungi maxsus yo‘nalish: Toshkent — Istanbul</h3>
+      <img src="avia.jpg" alt="Samolyot" width="300">
+      <p><i>Toshkent — Istanbul</i> — eng mashhur xalqaro yo‘nalishlardan biri.</p>
+    </div>
+
+    <div class="list-section">
+      <h3>Parvoz ma’lumotlari:</h3>
+      <ul>
+        <li>Parvoz raqami: HY-273</li>
+        <li>Jo‘nash vaqti: 10:45</li>
+        <li>Yetib borish vaqti: 13:30</li>
+        <li>Samolyot turi: Boeing 787 Dreamliner</li>
+        <li>Chipta narxi: 3 200 000 so‘m</li>
+      </ul>
+
+      <h3>Chipta olish bosqichlari:</h3>
+      <ol>
+        <li>Yo‘nalishni tanlang.</li>
+        <li>Sana va vaqtni belgilang.</li>
+        <li>Yo‘lovchi ma’lumotlarini kiriting.</li>
+        <li>To‘lovni amalga oshiring.</li>
+        <li><s>Chipta elektron pochtangizga yuboriladi.</s></li>
+      </ol>
+    </div>
+
+    <div class="table-section">
+      <h3>Mashhur yo‘nalishlar jadvali:</h3>
+       <table>
+        <tr>
+          <th>№</th>
+          <th>Rasm</th>
+          <th>Yo‘nalish</th>
+          <th>Vaqt</th>
+          <th>Chipta narxi</th>
+          <th>Chipta olish</th>
+        </tr>
+
+        <tr>
+          <td>1</td>
+          <td><img src="Desktop/KIDT-233/download.jpg" alt="Istanbul"></td>
+          <td>Toshkent — Istanbul</td>
+          <td>10:45</td>
+          <td>3 200 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+
+        <tr>
+          <td>2</td>
+          <td><img src="Desktop/KIDT-233/download-1.jpg" alt="Moskva"></td>
+          <td>Toshkent — Moskva</td>
+          <td>12:00</td>
+          <td>2 850 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+
+        <tr>
+          <td>3</td>
+          <td><img src="Desktop/KIDT-233/images.jpg" alt="Dubay"></td>
+          <td>Toshkent — Dubay</td>
+          <td>15:30</td>
+          <td>2 950 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+
+        <tr>
+          <td>4</td>
+          <td><img src="Desktop/KIDT-233/download-2.jpg" alt="London"></td>
+          <td>Toshkent — London</td>
+          <td>18:45</td>
+          <td>5 600 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+
+        <tr>
+          <td>5</td>
+          <td><img src="Desktop/KIDT-233/download-3.jpg" alt="Parij"></td>
+          <td>Toshkent — Parij</td>
+          <td>21:15</td>
+          <td>5 850 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+
+        <tr>
+          <td>6</td>
+          <td><img src="Desktop/KIDT-233/download-4.jpg" alt="Seul"></td>
+          <td>Toshkent — Seul</td>
+          <td>22:00</td>
+          <td>6 100 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+
+        <tr>
+          <td>7</td>
+          <td><img src="Desktop/KIDT-233/download-5.jpg" alt="Rim"></td>
+          <td>Toshkent — Rim</td>
+          <td>17:40</td>
+          <td>5 400 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+
+        <tr>
+          <td>8</td>
+          <td><img src="Desktop/KIDT-233/download-6.jpg" alt="Bangkok"></td>
+          <td>Toshkent — Bangkok</td>
+          <td>09:30</td>
+          <td>4 750 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+
+        <tr>
+          <td>9</td>
+          <td><img src="Desktop/KIDT-233/download-7.jpg" alt="Kuala-Lumpur"></td>
+          <td>Toshkent — Kuala-Lumpur</td>
+          <td>20:00</td>
+          <td>6 000 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+
+        <tr>
+          <td>10</td>
+          <td><img src="Desktop/KIDT-233/download-8.jpg" alt="Tokio"></td>
+          <td>Toshkent — Tokio</td>
+          <td>23:50</td>
+          <td>6 500 000 so‘m</td>
+          <td><a href="#">Chipta olish</a></td>
+        </tr>
+      </table>
+
+      <form action="#" method="post">
+        <fieldset>
+          <legend>Yo‘lovchi ma’lumotlari</legend>
+
+          <label>Ism va familiya:</label>
+          <input type="text" name="fname" placeholder="Ismingizni kiriting"><br><br>
+
+          <label>Pasport raqami:</label>
+          <input type="text" name="passport" placeholder="AA1234567"><br><br>
+
+          <label>Telefon:</label>
+          <input type="tel" name="tel" placeholder="+998901234567"><br><br>
+
+          <label>Jo‘nash sanasi:</label>
+          <input type="date" name="date"><br><br>
+
+          <label>Yo‘nalish:</label>
+          <select name="direction">
+            <option value="Toshkent-Istanbul">Toshkent — Istanbul</option>
+            <option value="Toshkent-Moskva">Toshkent — Moskva</option>
+            <option value="Toshkent-Dubay">Toshkent — Dubay</option>
+          </select><br><br>
+
+          <label>Chipta turi:</label><br>
+          <input type="radio" name="class" value="econom">Ekonom
+          <input type="radio" name="class" value="business">Biznes<br><br>
+
+          <div class="btns">
+            <input type="submit" value="Yuborish">
+            <input type="reset" value="Tozalash">
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
+    <div class="griddisley">
+      <article class="card">
+        <div class="card-media">
+          <img src="plane1.jpg" alt="Samolyot" />
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Toshkent — Istanbul</h3>
+          <p class="card-text">Har kuni parvozlar. Qulay narx va tez yetib borish.</p>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-outline">Batafsil</button>
+          <button class="btn btn-primary">Chipta olish</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media">
+          <img src="plane2.jpg" alt="Samolyot" />
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Toshkent — Dubay</h3>
+          <p class="card-text">Har kuni 2 marta parvoz. Eng mashhur yo‘nalishlardan biri.</p>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-outline">Batafsil</button>
+          <button class="btn btn-primary">Chipta olish</button>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Avia Kassa. Barcha huquqlar himoyalangan.</p>
+  </footer>
+
+</body>
+</html>

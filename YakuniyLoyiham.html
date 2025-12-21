@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyLine Global - Xalqaro Avia Kassa</title>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --blue: #2563eb;
+            --accent: #f59e0b;
+            --success: #16a34a;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: #f8fafc; }
+
+        .hero {
+            position: relative;
+            height: 450px; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            color: white;
+            overflow: hidden;
+            transition: background 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), 
+                              url('https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?auto=format&fit=crop&w=1350&q=80');
+        }
+
+        .hero-content { z-index: 2; text-align: center; }
+        .hero h1 { font-size: 3.5rem; margin: 0; text-shadow: 2px 2px 15px rgba(0,0,0,0.7); animation: fadeInDown 1s ease; }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container { max-width: 1200px; margin: -50px auto 50px; padding: 0 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; position: relative; z-index: 5; }
+        .card { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background: #f1f5f9; color: var(--primary); padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0; }
+        td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
+        tr:hover { background: #fdf2f2; transition: 0.3s; }
+
+        .flight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .mini-card { background: white; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; transition: transform 0.3s; }
+        .mini-card:hover { transform: translateY(-5px); }
+        .mini-card img { width: 100%; height: 120px; object-fit: cover; }
+        .mini-card-content { padding: 10px; }
+
+        /* Tugmalar va Form */
+        .btn { background: var(--blue); color: white; border: none; padding: 12px 15px; border-radius: 6px; cursor: pointer; width: 100%; font-weight: 600; transition: 0.3s; text-decoration: none; display: block; text-align: center; box-sizing: border-box; }
+        .btn:hover { background: var(--primary); transform: scale(1.02); }
+        .btn-success { background: var(--success); margin-top: 10px; }
+        .btn-add { background: var(--accent); color: var(--primary); font-size: 12px; width: auto; padding: 8px 12px; display: inline-block; }
+
+        input { width: 100%; box-sizing: border-box; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
+
+        /* Dispeycher qismi */
+        .dispatcher-info { margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 15px; }
+        .contact-link { display: flex; align-items: center; color: var(--primary); text-decoration: none; margin-bottom: 10px; font-weight: 500; }
+        .contact-link span { margin-right: 10px; font-size: 18px; }
+
+        @media (max-width: 800px) { .container, .flight-grid { grid-template-columns: 1fr; } .hero h1 { font-size: 2.2rem; } }
+    </style>
+</head>
+<body>
+
+<div class="hero" id="dynamic-hero">
+    <div class="hero-content">
+        <h1>DUNYO SIZNI KUTMOQDA</h1>
+        <p>Eng arzon va ishonchli reyslar faqat bizda</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="left-col">
+        <div class="flight-grid" id="top-flights"></div>
+        <div class="card">
+            <h3>🌍 Xalqaro Reyslar Jadvali</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Davlat / Shahar</th>
+                        <th>Davomiyligi</th>
+                        <th>Narx (UZS)</th>
+                        <th>Amal</th>
+                    </tr>
+                </thead>
+                <tbody id="full-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="right-col">
+        <div class="card" style="position: sticky; top: 20px;">
+            <h3>🛒 Tanlangan Chiptalar</h3>
+            <div id="cart-list"><p style="color:gray">Hali reys tanlanmadi</p></div>
+            <hr>
+            <h4 id="total-price">Jami: 0 UZS</h4>
+            
+            <form id="checkout-form">
+                <input type="text" id="u-name" placeholder="To'liq ismingiz" required>
+                <input type="tel" id="u-phone" placeholder="Telefon raqamingiz (+998...)" required>
+                <button type="submit" class="btn">BAND QILISHNI YAKUNLASH</button>
+            </form>
+
+            <div class="dispatcher-info">
+                <h4>📞 Dispeycher bilan aloqa</h4>
+                <p style="font-size: 13px; color: #666;">Savollaringiz bormi? Mutaxassis bilan bog'laning:</p>
+                
+                <a href="tel:+998901234567" class="contact-link">
+                    <span>📞</span> +998 (90) 123-45-67
+                </a>
+                <a href="mailto:info@skyline.uz" class="contact-link">
+                    <span>✉️</span> info@skyline.uz
+                </a>
+                <a href="https://t.me/username" target="_blank" class="btn btn-success">
+                    Telegram orqali yozish
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const bgImages = [
+        'https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1469854523086-cc02fe5d8df0?auto=format&fit=crop&w=1350&q=80',
+        'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1350&q=80'
+    ];
+
+    let currentBgIndex = 0;
+    const heroSection = document.getElementById('dynamic-hero');
+
+    function changeBackground() {
+        currentBgIndex = (currentBgIndex + 1) % bgImages.length;
+        heroSection.style.backgroundImage = `linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('${bgImages[currentBgIndex]}')`;
+    }
+
+    setInterval(changeBackground, 5000);
+
+    const allFlights = [
+        { id: 1, country: "Turkiya", city: "Istanbul", price: 4200000, time: "4s 30m", img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400" },
+        { id: 2, country: "BAA", city: "Dubai", price: 3850000, time: "3s 20m", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=400" },
+        { id: 3, country: "Fransiya", city: "Parij", price: 7900000, time: "7s 10m", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400" },
+        { id: 4, country: "Janubiy Koreya", city: "Seul", price: 6500000, time: "6s 40m", img: "https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=400" },
+        { id: 5, country: "AQSH", city: "Nyu-York", price: 11200000, time: "14s 20m", img: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400" },
+        { id: 6, country: "Yaponiya", city: "Tokio", price: 8900000, time: "9s 15m", img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400" },
+        { id: 7, country: "Misr", city: "Qohira", price: 5100000, time: "5s 50m", img: "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?w=400" },
+        { id: 8, country: "Germaniya", city: "Berlin", price: 6800000, time: "6s 10m", img: "https://images.unsplash.com/photo-1560969184-10fe8719e047?w=400" }
+    ];
+
+    let cart = [];
+
+    function init() {
+        const grid = document.getElementById('top-flights');
+        const table = document.getElementById('full-table-body');
+
+        allFlights.forEach((f, index) => {
+            if(index < 4) {
+                grid.innerHTML += `
+                    <div class="mini-card">
+                        <img src="${f.img}" alt="${f.city}">
+                        <div class="mini-card-content">
+                            <strong>${f.city}</strong>
+                            <p style="font-size:12px; margin:5px 0;">${f.price.toLocaleString()} UZS</p>
+                            <button class="btn btn-add" onclick="addToCart(${f.id})">Savatga</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            table.innerHTML += `
+                <tr>
+                    <td><b>${f.country}</b>, ${f.city}</td>
+                    <td>${f.time}</td>
+                    <td>${f.price.toLocaleString()}</td>
+                    <td><button class="btn btn-add" onclick="addToCart(${f.id})">Tanlash</button></td>
+                </tr>
+            `;
+        });
+    }
+
+    function addToCart(id) {
+        const item = allFlights.find(x => x.id === id);
+        cart.push(item);
+        updateUI();
+    }
+
+    function updateUI() {
+        const list = document.getElementById('cart-list');
+        const totalEl = document.getElementById('total-price');
+        
+        if(cart.length === 0) {
+            list.innerHTML = '<p style="color:gray">Hali reys tanlanmadi</p>';
+            totalEl.innerText = "Jami: 0 UZS";
+            return;
+        }
+
+        list.innerHTML = cart.map((f, i) => `
+            <div style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:8px;">
+                <span>${f.city}</span>
+                <b>${f.price.toLocaleString()} <span onclick="removeFromCart(${i})" style="color:red; cursor:pointer; margin-left:5px;">✖</span></b>
+            </div>
+        `).join('');
+
+        const total = cart.reduce((s, c) => s + c.price, 0);
+        totalEl.innerText = `Jami: ${total.toLocaleString()} UZS`;
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateUI();
+    }
+
+    document.getElementById('checkout-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        if(cart.length === 0) return alert("Savat bo'sh! Iltimos, reys tanlang.");
+        
+        const userName = document.getElementById('u-name').value;
+        const userPhone = document.getElementById('u-phone').value;
+        
+        alert(`Rahmat, ${userName}! \nSizning buyurtmangiz qabul qilindi. \nDispeycherimiz tez orada ${userPhone} raqamiga aloqaga chiqadi.`);
+        
+        cart = []; 
+        updateUI(); 
+        e.target.reset();
+    });
+
+    init();
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>Avia Kassa – JS Eventlar</title>
+<style>
+body{
+    font-family:Arial;
+    background:#eef2f7;
+    margin:0;
+}
+header{
+    background:#1976d2;
+    color:white;
+    padding:15px;
+    text-align:center;
+}
+.container{
+    padding:20px;
+}
+select, button, input{
+    padding:8px;
+    margin:5px 0;
+}
+.tickets{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+.ticket{
+    background:white;
+    width:220px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+    padding:10px;
+    text-align:center;
+    cursor:pointer;
+}
+.ticket img{
+    width:100%;
+    height:120px;
+    object-fit:cover;
+}
+#output{
+    margin-top:20px;
+    background:white;
+    padding:15px;
+    border-radius:8px;
+}
+</style>
+</head>
+<body>
+
+<header>
+✈️ Avia Kassa (JS Eventlar)
+</header>
+
+<div class="container">
+
+<h3>Manzil tanlang:</h3>
+<select id="destination">
+    <option value="all">Barchasi</option>
+    <option value="moskva">Toshkent → Moskva</option>
+    <option value="istanbul">Toshkent → Istanbul</option>
+    <option value="dubay">Toshkent → Dubay</option>
+</select>
+
+<div class="tickets" id="ticketList"></div>
+
+<div id="output">
+<h3>🛫 Tanlangan chipta</h3>
+</div>
+
+<h3>📦 Buyurtma berish</h3>
+<form id="orderForm">
+    <input type="text" placeholder="Ismingiz" required>
+    <button type="submit">Yuborish</button>
+</form>
+
+</div>
+
+<script>
+let tickets = [
+    {from:"Toshkent", to:"Moskva", date:"25/12/2025", price:250, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUjk1wK15s-2Nh0FfxjuSKozscSf-1N0OeXw&s"},
+    {from:"Toshkent", to:"Istanbul", date:"26/12/2025", price:180, img:"https://api.darakchi.uz/media/news_preview/2024/07/29/55-xl_jqSspuy_rE1U9XT.medium.webp"},
+    {from:"Toshkent", to:"Dubay", date:"27/12/2025", price:300, img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-UJHP72r63U4t5x5-Pg-h8kLPzmZqYsDCmg&s"}
+];
+
+let ticketList = document.getElementById("ticketList");
+let outputDiv = document.getElementById("output");
+let destination = document.getElementById("destination");
+
+// Click event – chipta tanlash
+function showTickets(filter){
+    ticketList.innerHTML="";
+    tickets.forEach((ticket, index)=>{
+        if(filter==="all" || ticket.to.toLowerCase()===filter){
+            let div=document.createElement("div");
+            div.className="ticket";
+            div.innerHTML=`
+                <img src="${ticket.img}">
+                <h4>${ticket.from} → ${ticket.to}</h4>
+                <p>Sanasi: ${ticket.date} | Narx: ${ticket.price}$</p>
+            `;
+            div.addEventListener("click",()=>{
+                outputDiv.innerHTML=`<h3>🛫 Tanlangan chipta</h3>
+                <p><b>${ticket.from} → ${ticket.to}</b></p>
+                <p>Sanasi: ${ticket.date}</p>
+                <p>Narxi: ${ticket.price}$</p>`;
+            });
+            ticketList.appendChild(div);
+        }
+    });
+}
+
+// Change event – manzil tanlash
+destination.addEventListener("change", ()=>{
+    showTickets(destination.value);
+});
+
+// Submit event – buyurtma yuborish
+document.getElementById("orderForm").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    alert("Buyurtmangiz qabul qilindi!");
+    outputDiv.innerHTML="<h3>🛫 Tanlangan chipta</h3>";
+    document.getElementById("orderForm").reset();
+});
+
+// Boshlanishida barcha chiptalar chiqadi
+showTickets("all");
+</script>
+
+</body>
+</html>

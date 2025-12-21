@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>Avia Kassa – Interaktiv Loyiha</title>
+<style>
+body{
+    font-family:Arial, sans-serif;
+    background:#f0f3fa;
+    padding:20px;
+}
+h2{
+    text-align:center;
+    color:#1a237e;
+}
+input, select, button{
+    padding:8px;
+    margin:5px 0;
+    border-radius:6px;
+    border:1px solid #aaa;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+    margin-top:10px;
+}
+th, td{
+    padding:10px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+th{
+    background:#303f9f;
+    color:white;
+}
+tr:nth-child(even){
+    background:#f5f6ff;
+}
+tr:hover{
+    background:#e8eaf6;
+}
+#cart{
+    margin-top:20px;
+    background:#fff;
+    padding:15px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,.2);
+}
+</style>
+</head>
+<body>
+
+<h2>✈️ Avia Kassa</h2>
+
+<h3>Qidiruv:</h3>
+<input id="searchInput" type="text" placeholder="Shahar yoki reys raqami...">
+
+<table>
+<thead>
+<tr>
+    <th>№</th>
+    <th>Reys</th>
+    <th>Manzil</th>
+    <th>Chiptalar soni</th>
+    <th>Narx (UZS)</th>
+    <th>🛒 Savatga qo‘shish</th>
+</tr>
+</thead>
+<tbody id="flightTable"></tbody>
+</table>
+
+<div id="cart">
+<h3>🛒 Savat</h3>
+<ul id="cartList"></ul>
+</div>
+
+<h3>📦 Buyurtma berish</h3>
+<form id="orderForm">
+    <input type="text" id="name" placeholder="Ismingiz" required>
+    <input type="tel" id="phone" placeholder="Telefon raqamingiz" required pattern="\\+998\\s\\d{2}\\s\\d{7}">
+    <button type="submit">Buyurtma yuborish</button>
+</form>
+
+<script>
+
+let flightsJSON = `[
+    {"id":1,"flight":"HY-101","destination":"Toshkent → Moskva","tickets":50,"price":1200000},
+    {"id":2,"flight":"HY-102","destination":"Toshkent → Istanbul","tickets":30,"price":1500000},
+    {"id":3,"flight":"HY-103","destination":"Toshkent → Dubay","tickets":20,"price":1800000},
+    {"id":4,"flight":"HY-104","destination":"Toshkent → Ankara","tickets":25,"price":1400000},
+    {"id":5,"flight":"HY-105","destination":"Toshkent → Seul","tickets":15,"price":2000000}
+]`;
+
+let flights = JSON.parse(flightsJSON);
+let cartList = document.getElementById("cartList");
+
+
+function displayFlights(data){
+    let table = document.getElementById("flightTable");
+    table.innerHTML = "";
+    data.forEach(flight => {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${flight.id}</td>
+            <td>${flight.flight}</td>
+            <td>${flight.destination}</td>
+            <td>${flight.tickets}</td>
+            <td>${flight.price.toLocaleString()}</td>
+            <td><button class="addBtn">➕</button></td>
+        `;
+       
+        row.querySelector(".addBtn").addEventListener("click", ()=>{
+            let li = document.createElement("li");
+            li.textContent = `${flight.flight} – ${flight.destination} – ${flight.price.toLocaleString()} UZS`;
+            cartList.appendChild(li);
+        });
+        table.appendChild(row);
+    });
+}
+
+
+displayFlights(flights);
+
+
+document.getElementById("searchInput").addEventListener("keyup", function(){
+    let value = this.value.toLowerCase();
+    let filtered = flights.filter(f => 
+        f.destination.toLowerCase().includes(value) || 
+        f.flight.toLowerCase().includes(value)
+    );
+    displayFlights(filtered);
+});
+
+document.getElementById("orderForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    let name = document.getElementById("name").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let phonePattern = /^\+998\s\d{2}\s\d{7}$/;
+
+    if(name === "" || phone === ""){
+        alert("Iltimos, barcha maydonlarni to‘ldiring!");
+        return;
+    }
+
+    if(!phonePattern.test(phone)){
+        alert("Telefon raqam formatiga e’tibor bering: +998 xx xxxxxxx");
+        return;
+    }
+
+    if(cartList.children.length === 0){
+        alert("Iltimos, kamida bitta reys tanlang!");
+        return;
+    }
+
+    alert(`Buyurtmangiz qabul qilindi, ${name}!`);
+    cartList.innerHTML = "";
+    document.getElementById("orderForm").reset();
+});
+</script>
+
+</body>
+</html>

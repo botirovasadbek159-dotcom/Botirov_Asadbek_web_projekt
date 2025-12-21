@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>Avia Kassa – JS Funksiyalar & Animatsiya</title>
+<style>
+/* ====== UMUMIY ====== */
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(-45deg,#e3f2fd,#fce4ec,#e8f5e9,#fffde7);
+    background-size:400% 400%;
+    animation:bgMove 15s infinite alternate;
+}
+
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    100%{background-position:100% 50%}
+}
+
+/* ====== HEADER ====== */
+header{
+    background:#1976d2;
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-size:20px;
+    animation:headerDrop 1s ease;
+}
+
+@keyframes headerDrop{
+    from{transform:translateY(-50px);opacity:0}
+    to{transform:translateY(0);opacity:1}
+}
+
+/* ====== TICKETS ====== */
+.tickets{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    padding:30px;
+}
+
+.ticket{
+    width:220px;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.2);
+    cursor:pointer;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    text-align:center;
+    padding:15px;
+    animation:ticketUp 0.8s ease forwards;
+}
+
+.ticket:nth-child(1){animation-delay:0.2s;}
+.ticket:nth-child(2){animation-delay:0.4s;}
+.ticket:nth-child(3){animation-delay:0.6s;}
+
+.ticket:hover{
+    transform:scale(1.05);
+    box-shadow:0 10px 25px rgba(0,0,0,.3);
+    background:#e1f5fe;
+}
+
+.ticket h3{
+    margin:10px 0 5px 0;
+    color:#0d47a1;
+}
+
+.ticket p{
+    font-size:14px;
+    color:#555;
+}
+
+/* Ticket animation */
+@keyframes ticketUp{
+    from{transform:translateY(40px);opacity:0}
+    to{transform:translateY(0);opacity:1}
+}
+
+/* ====== OUTPUT ====== */
+#output{
+    text-align:center;
+    margin-top:20px;
+    font-size:16px;
+    color:#333;
+    padding:10px;
+    transition: opacity 0.5s;
+    opacity:1;
+}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:768px){
+    .tickets{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<header>
+✈️ Avia Kassa – JavaScript Funksiyalar va Animatsiya
+</header>
+
+<section class="tickets">
+    <div class="ticket" onclick="showTicket(0)">
+        <h3>Toshkent → Moskva</h3>
+        <p>Sanasi: 25/12/2025 | Narx: 250$</p>
+    </div>
+
+    <div class="ticket" onclick="showTicket(1)">
+        <h3>Toshkent → Istanbul</h3>
+        <p>Sanasi: 26/12/2025 | Narx: 180$</p>
+    </div>
+
+    <div class="ticket" onclick="showTicket(2)">
+        <h3>Toshkent → Dubay</h3>
+        <p>Sanasi: 27/12/2025 | Narx: 300$</p>
+    </div>
+</section>
+
+<div id="output">🛫 Tanlangan chipta shu yerda ko‘rinadi</div>
+
+<script>
+// O‘zgaruvchilar
+let tickets = [
+    {from:"Toshkent", to:"Moskva", date:"25/12/2025", price:250},
+    {from:"Toshkent", to:"Istanbul", date:"26/12/2025", price:180},
+    {from:"Toshkent", to:"Dubay", date:"27/12/2025", price:300}
+];
+
+// Oddiy funksiya
+function showTicket(index){
+    let ticket = tickets[index]; 
+    let outputDiv = document.getElementById("output");
+
+    // Fade-out effect
+    outputDiv.style.opacity = 0;
+    setTimeout(() => {
+        outputDiv.innerHTML = `Siz tanladingiz:<br>
+        <b>${ticket.from} → ${ticket.to}</b><br>
+        Sanasi: ${ticket.date}<br>
+        Narxi: ${ticket.price}$`;
+        outputDiv.style.opacity = 1;
+    }, 200);
+}
+</script>
+
+</body>
+</html>
